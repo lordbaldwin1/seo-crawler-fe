@@ -27,7 +27,10 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-force-graph": "^1.48.1",
+    "react-force-graph-3d": "^1.29.0",
     "tailwind-merge": "^3.3.1",
+    "three": "^0.180.0",
+    "three-spritetext": "^1.10.0",
     "use-scramble": "^2.2.15",
     "zod": "^3.24.2"
   },
