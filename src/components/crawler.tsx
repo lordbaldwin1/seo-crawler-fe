@@ -6,13 +6,13 @@ import { env } from "~/env";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import dynamic from "next/dynamic";
-import { ArrowBigDownIcon, ChevronDown, Loader2 } from "lucide-react";
+import { ChevronDown, Loader2 } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "~/components/ui/tooltip"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 const ForceGraph3D = dynamic(() => import("react-force-graph-3d"), {
   ssr: false,
 });
@@ -60,7 +60,7 @@ export default function Crawler() {
       );
 
       if (!res.ok) {
-        const error = (await res.json());
+        const error = (await res.json()) as { error: string };
         setError(`error: ${error.error}`)
         return;
       }
@@ -101,7 +101,7 @@ export default function Crawler() {
               <TooltipTrigger asChild>
                 <Input
                   ref={inputRef}
-                  placeholder="Enter a URL..."
+                  placeholder="enter a URL..."
                   onClick={() => setError("")}
                   value={queryParams.url}
                   onChange={(e) =>
@@ -125,9 +125,9 @@ export default function Crawler() {
                   url: "",
                 }));
                 inputRef.current?.focus();
-              }}>Clear</Button>
+              }}>clear</Button>
               <Button className="w-1/2" onClick={handleCrawlURL} disabled={isLoading ? true : false}>
-                {isLoading ? <Loader2 className="animate-spin" /> : "Crawl"}
+                {isLoading ? <Loader2 className="animate-spin" /> : "crawl"}
               </Button>
             </div>
           </section>

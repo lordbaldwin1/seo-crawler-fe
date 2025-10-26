@@ -1,16 +1,5 @@
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
-import { Menu } from "lucide-react";
-import { Button } from "./ui/button";
 
 export default function Navbar() {
   return (
