@@ -6,10 +6,42 @@ import Navbar from "~/components/navbar";
 import { ThemeProvider } from "~/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "SEO Crawler",
-  description: "A visualization of connected URLs for any website.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
-};
+  metadataBase: new URL("https://seo-crawler-fe-production.up.railway.app/"),
+  title: {
+    default: "SEO Crawler",
+    template: "%s | SEO Crawler",
+  },
+  description: "SEO Crawler - A visualization of connected pages for any website.",
+  openGraph: {
+    title: "Zachary Springer",
+    description: "SEO Crawler - A visualization of connected pages for any website.",
+    url: "https://seo-crawler-fe-production.up.railway.app/",
+    siteName: "Zachary Springer",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph.png",
+        width: 1200,
+        height: 630,
+        alt: "SEO Crawler - A visualization of connected pages for any website.",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    "max-video-preview": -1,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+  },
+  twitter: {
+    title: "Zachary Springer",
+    card: "summary_large_image",
+    creator: "@lordbaldwin1",
+    images: ["/opengraph.png"],
+  },
+}
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
