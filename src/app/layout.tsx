@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import Navbar from "~/components/navbar";
 import { ThemeProvider } from "~/components/theme-provider";
+import Footer from "~/components/footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seo-crawler-fe-production.up.railway.app/"),
@@ -57,9 +58,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistMono.variable} font-mono min-h-screen antialiased`}
+        className={`${geistMono.variable} font-mono min-h-screen antialiased flex flex-col`}
       >
-        <div className="mx-auto max-w-4xl px-4 py-8">
+        <div className="mx-auto max-w-4xl px-4 py-8 flex flex-col min-h-screen w-full">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -67,7 +68,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Navbar />
-            {children}
+            <main className="flex-1">{children}</main>
+            <Footer />
           </ThemeProvider>
         </div>
       </body>

@@ -37,6 +37,19 @@ export type ReactForceGraphShape = {
   }[];
 };
 
+export type ExtractedPageData = {
+  url: string;
+  h1: string;
+  first_paragraph: string;
+  outgoing_links: string[];
+  image_urls: string[];
+};
+
+export type CrawlURLResponse = {
+  GraphDataBody: ReactForceGraphShape;
+  PageDataBody: Record<string, ExtractedPageData>;
+}
+
 export default function Crawler() {
   const [showGraph, setShowGraph] = useState<boolean>(false);
   const [queryParams, setQueryParams] = useState<CrawlURLQueryParameters>({
@@ -47,6 +60,7 @@ export default function Crawler() {
     nodes: [],
     links: [],
   });
+  const [pageData, setPageData] = useState<Record<string, ExtractedPageData>>({})
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -64,8 +78,12 @@ export default function Crawler() {
         setError(`error: ${error.error}`)
         return;
       }
-      const data = (await res.json()) as ReactForceGraphShape;
-      setGraphData(data);
+
+      const { GraphDataBody, PageDataBody } = (await res.json()) as CrawlURLResponse;
+
+      console.log(PageDataBody);
+      setGraphData(GraphDataBody);
+      setPageData(PageDataBody);
       setShowGraph(true);
     } catch (err) {
       setError(`${(err as Error).message}`)
@@ -163,6 +181,12 @@ export default function Crawler() {
             })
             setShowGraph(false)
           }}>test another site</Button>
+          <span className="mt-6">(work-in-progress)</span>
+          {Object.keys(pageData).map((url) => (
+            <div key={url}>
+              {url}
+            </div>
+          ))}
         </div>
       )
       }
