@@ -103,6 +103,11 @@ export default function Crawler() {
                   ref={inputRef}
                   placeholder="enter a URL..."
                   onClick={() => setError("")}
+                  onKeyDown={async (e) => {
+                    if (e.key === "Enter") {
+                      await handleCrawlURL();
+                    }
+                  }}
                   value={queryParams.url}
                   onChange={(e) =>
                     setQueryParams((prevQueryParams) => ({

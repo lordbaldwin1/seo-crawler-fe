@@ -1,16 +1,19 @@
-import Link from "next/link";
+"use client";
+
 import { ThemeToggle } from "./theme-toggle";
+import { Button } from "./ui/button";
 
 export default function Navbar() {
   return (
     <div className="mb-12 flex flex-row items-center justify-between gap-4">
       <div className="hidden sm:flex items flex-wrap gap-4">
-        <Link
-          href={"/"}
-          className="hover:text-accent group flex items-center transition-all duration-200"
+        <Button
+          variant={"link"}
+          onClick={() => window.location.reload()}
+          className="text-foreground hover:text-accent hover:no-underline group flex items-center transition-all duration-200"
         >
           <span>seo-crawler</span>
-        </Link>
+        </Button>
       </div>
 
       <div className="sm:hidden">
